@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 import static com.m3c.jc.View.DisplayManager.displayReading;
 
@@ -19,7 +20,7 @@ public class WordCounter {
         bufferedReader = new BufferedReader(new FileReader(fileName));
     }
 
-    //Processes the text line by line, separating into words, and adding to hashmap wordCount
+    //Processes the text line by line, separating into words, and adding to hash map wordCount
     public void processLines() throws Exception{
         String line = null;
         while ((line = bufferedReader.readLine()) != null) {
