@@ -6,6 +6,8 @@ import static com.m3c.jc.View.DisplayManager.displayResults;
 
 public class WordCounterManager {
 
+    //TODO: Logging
+    //Implements WordCounter class and displays results
     public void findTopThree() throws Exception{
         WordCounter wordCounter = new WordCounter();
         wordCounter.readerSetup("resources/test");

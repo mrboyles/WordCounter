@@ -5,28 +5,26 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 
+import static com.m3c.jc.View.DisplayManager.displayReading;
+
 public class WordCounter {
 
+    //Sets up a buffered reader
     private BufferedReader bufferedReader;
     public HashMap<String, Integer> wordCount = new HashMap<>();
 
+    //Gives a file reader the file for testing
     public void readerSetup(String fileName) throws FileNotFoundException {
+        displayReading(fileName);
         bufferedReader = new BufferedReader(new FileReader(fileName));
     }
 
+    //Processes the text line by line, separating into words, and adding to hashmap wordCount
     public void processLines() throws Exception{
         String line = null;
         while ((line = bufferedReader.readLine()) != null) {
             String[] words = line.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
             updateWordCount(words);
-        }
-    }
-
-    public void updateWordCount(String[] words) throws Exception {
-        for (String word : words) {
-            if (word != null && !word.isEmpty()) {
-                wordCountEntry(word);
-            }
         }
     }
 
@@ -38,6 +36,14 @@ public class WordCounter {
         }
     }
 
+    public void updateWordCount(String[] words) throws Exception {
+        for (String word : words) {
+            if (word != null && !word.isEmpty()) {
+                wordCountEntry(word);
+            }
+        }
+    }
+
         public int getWordCount(String word) {
         if (wordCount.containsKey(word)) {
             return wordCount.get(word);
@@ -46,6 +52,7 @@ public class WordCounter {
         }
     }
 
+    //Pulls out top three occurring words from wordCount
     public String[] getTopThree() {
         String[] topThree = new String[3];
         for (String key : wordCount.keySet()) {
